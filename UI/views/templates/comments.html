@@ -1,0 +1,11 @@
+﻿<div>
+    <div style="padding-top: 3px;">
+        <div ng-repeat="comment in ngModel | orderBy: 'created': false">
+            <comment task-id="taskId" ng-model="comment" ng-disabled="ngDisabled" current-user-id="{{currentUserId}}" active-user-id="{{activeUserId}}" on-save="onSave"></comment>
+        </div>
+        <span>
+            <edit-comment parent-id="null" task-id="taskId" ng-disabled="ngDisabled" current-user-id="{{currentUserId}}" active-user-id="{{activeUserId}}" on-save="onSave"></edit-comment>
+        </span>
+    </div>
+    <span class="form-control" ng-disabled="true" ng-show="ngDisabled && ngModel.length == 0" ng-bind-html="''|blank: 'None'"></span>
+</div>

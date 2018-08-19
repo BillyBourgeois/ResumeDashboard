@@ -1,0 +1,14 @@
+﻿<div>
+    <form class="form-inline" name="filterForm" ng-dirty="test()">
+        <div class="input-group">
+            <input type="text"
+                   ng-model="filter.range"
+                   class="form-control input-sm"
+                   ng-click="$event.stopPropagation()"                   
+                   autofocus="true"
+                   ng-enter="close()"
+                   ng-change="setDirty()"/>
+            <span class="input-group-addon " ng-click="clear()"><span class="glyphicon glyphicon-remove small remove" style="color:#5b1616"></span></span>
+        </div>        
+    </form>
+</div>

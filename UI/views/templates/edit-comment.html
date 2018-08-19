@@ -1,0 +1,47 @@
+﻿<div ng-show="!ngDisabled">
+    <div class="alert alert-comment" uib-collapse="!isOpen">
+        <div class="alert-comment-header" style="padding-bottom: 5px;">
+            <ng-form name="editSubject" class="form-inline">
+                <input type="text" class="form-control input-sm" ng-model="comment.subject" placeholder="Subject" />
+            </ng-form>
+            <label>
+                <span> &bull; </span>
+                <span ng-bind="commenterString()"></span>
+                <span> &bull; </span>
+                <span>Now</span>
+            </label>
+        </div>
+
+        <div class="comment-body-edit">
+            <ng-form name="editComments">
+                <div>
+                    <span class="" style="vertical-align: top">
+                        <span class="glyphicon glyphicon-comment light smaller" ng-show="{{parentId ==  null}}"></span>
+                        <span class="glyphicon glyphicon-share-alt light smaller upsidedown" ng-show="{{parentId != null}}"></span>
+                    </span>
+                    <span class="" style="width: 97%">
+                        <textarea ng-model="comment.comments"
+                                  class="form-control input-sm"
+                                  style="width: inherit"
+                                  rows="6"
+                                  placeholder="Comment text"></textarea>
+                    </span>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="pull-right" style="padding-right: 6px; padding-top: 5px">
+                            <span ng-click="save()" class="btn btn-default btn-sm">Save</span>
+                            <span ng-click="cancel()" class="btn btn-default btn-sm">Cancel</span>
+                        </div>
+                    </div>
+                </div>
+            </ng-form>
+        </div>
+    </div>
+    <div ng-click="toggleOpen()" uib-collapse="isOpen">
+        <a ng-show="{{parentId ==  null}}">Add Comment</a>
+        <a ng-show="{{parentId !=  null}}">Reply</a>
+    </div>
+
+</div>

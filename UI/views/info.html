@@ -1,0 +1,73 @@
+﻿<div class="row">
+    <form class="form-horizontal" name="helpForm" novalidate>
+        <uib-accordion-custom close-others="true" style="padding-bottom: 80px;">
+
+            <uib-accordion-group-custom ng-repeat="topic in topics" is-disabled="false"
+                                        is-open="topic.selected"
+                                        heading="{{topic.name}}"
+                                        hash="{{topic.name}}">
+                <!--For small, medium or large screens-->
+                <div class="col-xs-12 hidden-xs">
+                    <div class="col-sm-3 col-xs-12">
+                        <ul class="list-group">
+                            <li class="" ng-repeat="subTopic in subTopics =  topic.subTopics">
+                                <a href="" ng-class="{'active': topicOrSubTopicSelected(subTopic)}" ng-click="selectTopic(subTopics, $index)" class="list-group-item">{{subTopic.name}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-sm-9 col-xs-12">
+                        <div ng-repeat="subTopic in topic.subTopics" ng-if="topicOrSubTopicSelected(subTopic)">
+                            <uib-accordion-custom>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"><h4 class="panel-title">{{subTopic.name}}</h4></div>
+                                    <div class="panel-body">
+                                        <div ng-bind-html="subTopic.content">
+                                        </div>
+                                    </div>
+                                </div>
+                                <uib-accordion-group-custom ng-repeat="subSubTopic in subSubTopics = (parent = subTopic).subTopics" is-disabled="false"
+                                                            is-open="subSubTopic.selected"
+                                                            heading="{{subSubTopic.name}}">
+                                    <div ng-bind-html="subSubTopic.content">
+                                    </div>
+                                </uib-accordion-group-custom>
+                            </uib-accordion-custom>
+                        </div>
+                    </div>
+                </div>
+
+                <!--For extra small screens-->
+                <div class="col-xs-12 hidden-sm hidden-md hidden-lg">
+                    <div class="col-xs-12">
+                        <ul class="list-group">
+                            <li class="" ng-repeat="subTopic in subTopics =  topic.subTopics">
+                                <a href="" ng-class="{'active': subTopic.selected}" ng-click="selectTopic(subTopics, $index)" class="list-group-item">{{subTopic.name}}</a>
+                                <div class="" ng-class="{'collapse': !subTopic.selected}">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <div ng-bind-html="subTopic.content">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <ul>
+                                    <li ng-repeat="subSubTopic in subSubTopics = (parent = subTopic).subTopics">
+                                        <a ng-class="{'active': subSubTopic.selected}" ng-click="selectTopic(subSubTopics, $index); deselectParentTopics(subTopics)" class="list-group-item">{{subTopic.name + ' - ' + subSubTopic.name }}</a>
+                                        <div class="" ng-class="{'collapse': !subSubTopic.selected}">
+                                            <div class="panel panel-default">
+                                                <div class="panel-body">
+                                                    <div ng-bind-html="subSubTopic.content">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </uib-accordion-group-custom>
+        </uib-accordion-custom>
+    </form>
+</div>

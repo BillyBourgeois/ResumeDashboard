@@ -1,0 +1,56 @@
+﻿<div>
+    <div class="col-xs-11" style="padding-left: 0" ng-show="!ngDisabled">
+        <div class="col-xs-12" style="padding-left: 0">
+            <div class="form-group " ng-class="{'has-error':input.$invalid && (input.$dirty ||input.$touched)}" style="margin-bottom: 0;">
+                <label for="{{name}}" class="control-label col-xs-12 col-sm-3" ng-bind="label"></label>
+                <span ng-class="{'col-sm-3': width == 'sm','col-sm-6': width == 'md', 'col-sm-8': width == 'lg'}">
+                    <input 
+                           ng-attr-type="{{email ? 'email' : 'text'}}"
+                           spellcheck="true"
+                           name="{{name}}"
+                           id="{{name}}"
+                           ng-model="ngModel"
+                           ng-maxlength="ngMaxlength"
+                           maxlength="{{ngMaxlength}}"
+                           ng-required="ngRequired"
+                           ng-minlength="ngMinlength"
+                           ng-blur="focus = false"
+                           ng-focus="focus = true"
+                           ng-change="testFunc()"
+                           ng-disabled="ngDisabled"
+                           placeholder="{{placeholder}}"
+                           class="form-control "
+                           ng-class="{'upper-case': getUppercase()}" style="display: inline-block !important;"
+                           ng-trim="false" 
+                           autofocus="autoFocus" >
+                </span>
+            </div>
+        </div>
+        <div class="col-xs-12" style="padding-left: 0">
+            <div class="form-group form-inline" style="margin-bottom: 0;height: 20px;max-height: 20px;">
+                <label class="control-label hidden-xs col-sm-3"></label>
+                <span class="col-xs-12" ng-class="{'col-sm-3': width == 'sm','col-sm-6': width == 'md', 'col-sm-8': width == 'lg'}" style="min-width: 200px;">
+                    <span class="pull-left " ng-messages="input.$error" ng-if="input.$dirty ||input.$touched" style="padding-left: 0; max-height:20px; max-width:115px; overflow: hidden">
+                        <span ng-messages-include="views/templates/messages.html"></span>
+                    </span>
+                    <span class="pull-right fade-in" ng-show="focus && ngMaxlength != null" style="padding-left: 0">
+                        <span class="badge smaller" style="margin-top: 2px;">
+                            {{ngMaxlength - input.$viewValue.length}} / {{ngMaxlength}}
+                        </span>
+                    </span>
+
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-11" style="padding-left: 0" ng-show="ngDisabled">
+        <div class="col-xs-12" style="padding-left: 0">
+            <div class="form-group ">
+                <label for="{{name}}" class="control-label col-xs-12 col-sm-3" ng-bind="label"></label>
+                <span ng-class="{'col-sm-3': width == 'sm','col-sm-6': width == 'md', 'col-sm-8': width == 'lg'}">
+                    <span class="form-control" ng-disabled="true" ng-bind-html="ngModel | blank"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

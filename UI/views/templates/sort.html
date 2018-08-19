@@ -1,0 +1,7 @@
+﻿<span style="display: flex;" class="sortDirective">
+    <span ng-click="onClick()" class="sort">
+        <span ng-transclude></span>       
+        <span class="glyphicon small" ng-class="{'glyphicon-menu-down' : order === ngModel && !reverse,  'glyphicon-menu-up': order === ngModel && reverse, 'glyphicon-hide' : order != ngModel}"></span>
+    </span>
+</span>
+

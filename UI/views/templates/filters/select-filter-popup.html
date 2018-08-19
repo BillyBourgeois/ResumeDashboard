@@ -1,0 +1,17 @@
+﻿<div class="selectFilter">
+    <ul>
+        <li ng-click="$event.stopPropagation();onSelectAllToggle();">
+            <span class="glyphicon" ng-class="{'glyphicon-check':!filtered(), 'glyphicon-unchecked': filtered() }"></span>
+            <span>Select All</span>
+        </li>
+        <li class="sperator" role="separator"></li>
+        <li ng-show="item.total() != 0"  ng-repeat="item in filter.items" ng-disable="item.count() == 0" ng-click="$event.stopPropagation();onToggle(item);">
+            <span ng-class="{'light':  (item.count() == 0)}" >
+                <span class="glyphicon" ng-class="{'glyphicon-check':item.selected, 'glyphicon-unchecked': !item.selected }" ></span>
+               <span ng-bind="item.name"></span>
+                <span class="badge smaller" ng-show="item.count() > -1" ng-bind="item.count() + ' of ' + item.total()"></span>
+            </span>
+        </li>
+    </ul>
+    <input autofocus type="text" class="hiddenSelectFilterInput" ng-enter="close()" style="max-height: 0; max-width:0; border: 0; top: 0; left: 0; position: absolute" />
+</div>

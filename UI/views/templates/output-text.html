@@ -1,0 +1,15 @@
+﻿<div class="col-xs-11" style="padding-left: 0">
+    <div class="col-xs-12" style="padding-left: 0">
+        <div class="form-group " style="margin-bottom: 0;">
+            <label for="{{name}}" class="control-label col-xs-12 col-sm-3" ng-bind="label" style="white-space: nowrap"></label>
+            <span ng-class="{'col-sm-3': width == 'sm','col-sm-6': width == 'md', 'col-sm-8': width == 'lg'}">
+                <span class="form-control" ng-disabled="true" ng-show="url != undefined && url != null && url != ''">
+                    <a class="pointer" ng-href="{{url}}">
+                        <span ng-bind-html="model"></span>
+                    </a>
+                </span>
+                <span class="form-control" ng-disabled="true" ng-bind-html="model" ng-show="url == undefined || url == null || url == ''"></span>
+            </span>
+        </div>
+    </div>
+</div>

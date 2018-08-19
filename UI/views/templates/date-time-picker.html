@@ -1,0 +1,41 @@
+<span class="" ng-class="{'col-sm-3 col-xs-12': width == 'sm','col-sm-6 col-xs-12': width == 'md', 'col-sm-8 col-xs-12': width == 'lg'}">
+    <span class="">
+        <span class="input-group" ng-show="!ngDisabled">
+            <span ng-click="open($event)" 
+                  class="form-control {{inputClass}}" 
+                  ng-bind="ngModel | customDate"
+                   name="{{name}}"
+                   id="{{name}}"                  
+                   ng-disabled="ngDisabled"
+                   ng-show="!ngDisabled"
+                  style="min-width: 150px;"                  >                
+            </span>
+            <input
+                   type="hidden"
+                   class="form-control {{inputClass}}"                   
+                   readonly
+                   datetime-picker="MM/dd/yyyy HH:mm"
+                   datepicker-options="dateOptions"
+                   date-disabled="disabled(date, mode)"
+                   ng-disabled="ngDisabled"
+                   ng-model="ngModel"
+                   default-time="17:00:00"
+                   is-open="show"
+                   ng-click="open($event)"
+                   auto-open-time="autoOpenTime"
+                   button-bar="buttonBar" />
+            <span class="input-group-btn" ng-show="!ngDisabled">
+                <button type="button" class="btn btn-default {{btnClass}}"
+                        ng-disabled="ngDisabled"
+                        ng-click="open($event)">
+                    <i class="glyphicon glyphicon-calendar" />
+                </button>
+            </span>
+        </span>
+        <span ng-hide="!ngDisabled">
+            <span class="form-control disabled"                  
+                  ng-bind-html="ngModel | customDate | blank">
+            </span>
+        </span>
+    </span>
+</span>

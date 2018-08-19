@@ -1,0 +1,49 @@
+﻿<div class="col-xs-11" style="padding-left: 0">
+    <div class="col-xs-12" style="padding-left: 0">
+        <div class="form-group" style="margin-bottom: 0;">
+            <label class="control-label col-xs-12 col-sm-3">
+                {{label}}
+                <span style="cursor: pointer;"
+                      uib-popover-template="'logoPopover.html'" 
+                      popover-trigger="mouseenter outsideClick"
+                      popover-append-to-body="true">
+                    <sup> <span class="glyphicon glyphicon-question-sign"></span></sup>
+                </span>
+                <script type="text/ng-template" id="logoPopover.html">
+                    <div class="small" style="margin-left: 5px;">                        
+                        <ul style="list-style:disc">
+                            <li>
+                                Logos must be a png file. A transparent background layer works best.
+                            </li>
+                            <li>
+                                Logos must be 150 pixels in width and 30 pixels in height.
+                            </li>
+                        </ul>
+                    </div>
+                </script>
+            </label>
+            <div ng-class="{'col-sm-3': width == 'sm','col-sm-6': width == 'md', 'col-sm-8': width == 'lg'}">
+                <div style="padding-bottom: 20px">
+                    <div>
+                        <span style="max-height: 30px; max-width: 154px; display: inline-block; overflow: hidden;">
+                            <img ng-src="{{srcUrl}}" err-src="content/logos/default-logo.png" />
+                        </span>
+                        <span ng-show="!ngDisabled" ng-disabled="uploadActive" class="btn btn-sm btn-default" ng-click="activateInput()" style="vertical-align: top">
+                            <span class="text-center">
+                                <span class="glyphicon green" ng-class="{'glyphicon-plus': !uploadActive, 'glyphicon-refresh spin': uploadActive}"></span>
+                            </span>
+                            <span>{{addLabel()}}</span>
+                        </span>
+                    </div>
+                </div>
+                <!-- real input. hidden but activated by button -->
+                <input type="file" style="display: none;" ng-disabled="ngDisabled || uploadActive" accept=".png">
+                <span ng-show="ngDisabled && files.length == 0">
+                    <span class="form-control" ng-disabled="true">
+                        <span class="italic light small bold" ng-bind="'None'"></span>
+                    </span>
+                </span>
+            </div>
+        </div>
+    </div>    
+</div>

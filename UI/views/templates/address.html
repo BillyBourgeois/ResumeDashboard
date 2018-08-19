@@ -1,0 +1,31 @@
+﻿<div class="col-xs-11" style="padding-left: 0">
+    <div class="col-xs-12" style="padding-left: 0">
+        <div class="form-group" style="margin-bottom: 0;">
+            <label for="{{name}}" class="control-label col-xs-12 col-sm-3" ng-bind="label" style="white-space: nowrap"></label>
+            <div ng-class="{'col-sm-3': width == 'sm','col-sm-6': width == 'md', 'col-sm-8': width == 'lg'}">
+                <div>
+                    <span class="form-control" ng-disabled="true" ng-bind-html="model.addressLine1"></span>
+                </div>
+                <div ng-show="model.addressLine2">
+                    <span class="form-control" ng-disabled="true" ng-bind-html="model.addressLine2"></span>
+                </div>
+                <div>
+                    <span class="form-control" ng-disabled="true">
+                        <span ng-bind-html="model.city"></span>,
+                        <span ng-bind-html="model.state.replace('_', ' ')"></span>
+                        <a uib-popover-template="'views/templates/map/map-popover.html'"
+                           popover-trigger="'click outsideClick'"
+                           popover-append-to-body="true"
+                           popover-animation="true"
+                           popover-placement="auto right"
+                           popover-class="popover430"
+                           style="cursor: pointer;">
+                            <span ng-bind-html="model.zipCode"></span>
+                            <span class="glyphicon glyphicon-pushpin"></span>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+﻿<div>
+
+    <!-- pill list -->
+    <div class="col-centered" ng-hide="getChoiceArray(multiplier, total).length == 0">
+        <ul class="nav nav-pills nav-pills-sm" >
+            <li ng-repeat="option in getChoiceArray(multiplier, total) track by $index"
+                ng-class="{'active disabled': setSize == ($index + 1) * multiplier }"><a ng-bind="option" ng-click="onSelect(($index + 1) * multiplier)"></a></li>
+            <li ng-class="{'active disabled': setSize == total }" ng-show="(total < maxResults) || maxResults == null" role="menuitem"><a ng-click="onSelect(total)">All ({{total}})</a></li>
+        </ul>
+    </div>
+</div>

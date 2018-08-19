@@ -1,0 +1,43 @@
+﻿<div class="panel" ng-class="panelClass || 'panel-default' ">
+    <div ng-click="toggleOpen()" role="tab" id="{{::headingId}}" aria-selected="{{isOpen}}" class="panel-heading" ng-keypress="toggleOpen($event)">
+        <h4 class="panel-title">
+            <span class="glyphicon glyphicon-chevron-right" ng-class="{'text-muted': isDisabled, 'open': isOpen}"></span>
+            <span role="button" data-toggle="collapse" href aria-expanded="{{isOpen}}" aria-controls="{{::panelId}}" tabindex="0" class="accordion-toggle" uib-accordion-transclude-sortable="heading">
+                <span uib-accordion-header ng-class="{'text-muted': isDisabled}">{{heading}}</span>
+                <span uib-dropdown class="pull-right" dropdown-append-to-body="false" ng-cloak>
+                    <span class="glyphicon glyphicon-cog small"
+                          style="vertical-align:auto central"
+                          ng-click="leaveOpen($event)"
+                          ng-keypress="leaveOpen($event)"
+                          uib-dropdown-toggle></span>
+                    <!--<ul uib-dropdown-menu class="dropdown-menu">
+                        <li ng-class="{'active': true}">
+                            <a ng-click="" ><span class="glyphicon glyphicon-ok" ng-show="true"></span> Default Open</a>
+                        </li>
+                        <li>
+                            <a ng-click="moveUp()">Move Up</a>
+                        </li>
+                        <li>
+                            <a ng-click="moveDown()">Move Down</a>
+                        </li>
+                        <li>
+                            <a ng-click="moveLeft()">Move Left</a>
+                        </li>
+                        <li>
+                            <a ng-click="moveRight()">Move Right</a>
+                        </li>
+
+                        <li>
+                            <a ng-click="">Hide</a>
+                        </li>
+                    </ul>-->
+                </span>
+            </span>
+        </h4>
+    </div>
+    <div id="{{::panelId}}" aria-labelledby="{{::headingId}}" aria-hidden="{{!isOpen}}" role="tabpanel" class="panel-collapse collapse" uib-collapse="!isOpen">
+        <div class="panel-body" ng-transclude></div>
+    </div>
+</div>
+
+

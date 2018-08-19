@@ -1,0 +1,261 @@
+﻿<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resumé Dashboard</title>
+    <link rel="icon" type="image/x-icon" href="/app/favicon.ico" sizes="16x16" />
+
+
+
+    <link href="Content/bootstrap/bootstrap.min.css" rel="stylesheet" />
+    <link href="Content/spinner/spinner.css" rel="stylesheet" />
+    <link href="Content/app.css" rel="stylesheet" />
+    <link href="Content/angular-toastr/angular-toastr.css" rel="stylesheet" />    
+    <!--<link href="Content/colorPicker/jquery.minicolors.css" rel="stylesheet" />-->
+    <!--<link href="Content/contextMenu/contextMenu.css" rel="stylesheet" />-->
+    <!--<link href="Content/slider/slider.css" rel="stylesheet" />-->
+    <link href="Content/ng-sortable/ng-sortable.css" rel="stylesheet" />
+    <link href="Content/ng-sortable/ng-sortable.style.css" rel="stylesheet" />
+
+    <script src="Scripts/jquery/jquery-3.1.1.min.js"></script>
+    <script src="Scripts/bootstrap/bootstrap.min.js"></script>    
+</head>
+<body class="container-fluid">
+    <!-- Nav Bar -->
+    <ng-include src="'views/partials/nav-bar.html'"></ng-include>
+    <!-- Page content -->
+    <div id="wrap">
+        <div ng-view class="view-frame"></div>
+    </div>
+    <ng-include src="'views/partials/footer.html'"></ng-include>
+
+    <script src="Scripts/angular/angular.js"></script>
+    <script src="Scripts/angular/angular-route.js"></script>
+    <script src="Scripts/angular/angular-sanitize.js"></script>
+    <!--<script src="Scripts/angular-ui/ui-bootstrap.js"></script>-->
+    <script src="Scripts/angular-ui/ui-bootstrap-tpls.js"></script>
+    <script src="Scripts/angular-toastr/angular-toastr.tpls.js"></script>
+    <script src="Scripts/angular/angular-resource.js"></script>
+    <script src="Scripts/angular/angular-animate.js"></script>
+    <script src="Scripts/angular/angular-touch.js"></script>
+    <script src="Scripts/angular/angular-messages.js"></script>
+    <script src="Scripts/ng-storage/ngStorage.js"></script>
+    <script src="Scripts/SignalR/jquery.signalR-2.2.1.min.js"></script>
+    <script src="Scripts/d3/d3.min.js"></script>
+    <script src="Scripts/odata-filter-builder/ODataFilterBuilder.js"></script>
+    <script src="Scripts/datetime-picker/datetime-picker.js"></script>
+    <script src="Scripts/datetime-picker/datetime-picker.tpls.js"></script>
+    
+    <!-- google maps -->
+    <script src="scripts/angular-google-maps/lodash.min.js"></script>
+    <script src="scripts/angular-google-maps/angular-google-maps.js"></script>
+    <script src="scripts/angular-google-maps/angular-simple-logger.js"></script>
+    <!--<script src="Scripts/svg4everybody/svg4everybody.js"></script>-->
+    <!--<script src="Scripts/colorPicker/jquery.minicolors.js"></script>
+    <script src="Scripts/colorPicker/angular-minicolors.js"></script>-->
+
+    <script src="Scripts/ng-sortable/ng-sortable.js"></script>
+    <!--<script src="Scripts/contextMenu/contextMenu.js"></script>-->
+    <!--<script src="js/directives/QueryBuilder.js"></script>-->
+
+    <script src="js/app.js"></script>
+    <script src="js/config.js"></script>
+    <script src="js/route.js"></script>
+    <script src="js/utils.js"></script>
+
+
+    <!-- controllers -->
+    <script src="js/controllers/HomeCtrl.js"></script>
+    <script src="js/controllers/FooterCtrl.js"></script>
+    <script src="js/controllers/NavBarCtrl.js"></script>
+    <script src="js/controllers/InfoCtrl.js"></script>
+    <script src="js/controllers/ErrorCtrl.js"></script>
+    <script src="js/controllers/ResumeCtrl.js"></script>
+
+    <!-- services -->
+    <script src="js/services/HubService.js"></script>
+    <script src="js/services/CacheService.js"></script>
+    <script src="js/services/PanelService.js"></script>
+    <script src="js/services/BoardService.js"></script>
+
+    <!-- data services -->
+    <script src="js/services/UserService.js"></script>
+    <script src="js/services/DialogService.js"></script>
+
+    <!-- directives -->
+    <script src="js/directives/AccordionCustom.js"></script>
+    <script src="js/directives/AccordionSortable.js"></script>
+    <script src="js/directives/inputs/TextArea.js"></script>
+    <script src="js/directives/inputs/TextBox.js"></script>
+    <script src="js/directives/inputs/OutputText.js"></script>
+    <script src="js/directives/inputs/Address.js"></script>
+    <script src="js/directives/Notifications.js"></script>
+    <script src="js/directives/Spinner.js"></script>
+    <script src="js/directives/DataTable.js"></script>
+    <script src="js/directives/JobsTable.js"></script>
+    <script src="js/directives/DegreesTable.js"></script>
+    <script src="js/directives/GoogleMap.js"></script>
+
+    <script src="js/directives/AccordionCustom.js"></script>
+    <script src="js/directives/AccordionSortable.js"></script>
+
+    <script src="js/directives/DatePicker.js"></script>
+    <script src="js/directives/DateTimePicker.js"></script>
+    <!-- panel directives -->
+
+    <script src="js/directives/panels/Panel.js"></script>
+    <script src="js/directives/panels/ContactInfo.js"></script>
+    <script src="js/directives/panels/Skills.js"></script>
+    <script src="js/directives/panels/Hobbies.js"></script>
+    <script src="js/directives/panels/Jobs.js"></script>
+    <script src="js/directives/panels/Degrees.js"></script>
+    <script src="js/directives/panels/Map.js"></script>
+    <script src="js/directives/panels/.js"></script>
+    <!-- data filters -->
+    <script src="js/directives/dataFilters/ContainsFilter.js"></script>
+    <script src="js/directives/dataFilters/DateFilter.js"></script>
+    <script src="js/directives/dataFilters/NumberFilter.js"></script>
+    <script src="js/directives/dataFilters/SelectFilter.js"></script>
+    <script src="js/directives/Sort.js"></script>
+    <!-- d3 directives -->
+    <script src="js/directives/graph/BarGraph.js"></script>
+    <script src="js/directives/graph/CombinedGraph.js"></script>
+    <script src="js/directives/graph/DonutGraph.js"></script>
+
+    <!-- filters -->
+    <script src="js/filters/FullNameFilter.js"></script>
+    <script src="js/filters/BlankFilter.js"></script>
+    <script src="js/filters/CustomDate.js"></script>
+    <!-- data filters -->
+    <script src="js/filters/SelectedItemFilter.js"></script>
+    <script src="js/filters/NumberFilter.js"></script>
+    <script src="js/filters/ContainsFilter.js"></script>
+    <script src="js/filters/DateFilter.js"></script>
+    
+
+    <!--<script src="js/controllers/AdminCtrl.js"></script>
+    <script src="js/controllers/AssignmentDetailsCtrl.js"></script>
+    <script src="js/controllers/AssignmentsCtrl.js"></script>
+    <script src="js/controllers/CompanyDetailsCtrl.js"></script>
+    <script src="js/controllers/DecisionDetailsCtrl.js"></script>
+    <script src="js/controllers/DeveloperCtrl.js"></script>
+
+    <script src="js/controllers/FlowchartCtrl.js"></script>
+
+    <script src="js/controllers/GroupDetailsCtrl.js"></script>
+    <script src="js/controllers/HelpCtrl.js"></script>
+    <script src="js/controllers/HomeCtrl.js"></script>
+    <script src="js/controllers/InboxCtrl.js"></script>
+
+    <script src="js/controllers/ProfileCtrl.js"></script>
+    <script src="js/controllers/ProjectDetailsCtrl.js"></script>
+    <script src="js/controllers/ReportsCtrl.js"></script>
+    <script src="js/controllers/RoleDetailsCtrl.js"></script>
+    <script src="js/controllers/SystemAdminCtrl.js"></script>
+    <script src="js/controllers/TaskComplexCtrl.js"></script>
+    <script src="js/controllers/TasksCtrl.js"></script>
+    <script src="js/controllers/TaskSimpleCtrl.js"></script>
+    <script src="js/controllers/TaskTemplateCtrl.js"></script>
+    <script src="js/controllers/TaskTemplatesCtrl.js"></script>
+    <script src="js/controllers/UserDetailsCtrl.js"></script>
+    <script src="js/controllers/VertexDetailsCtrl.js"></script>-->
+    <!-- panels -->
+    <!--<script src="js/directives/panels/CompanyAssignmentsGraph.js"></script>
+    <script src="js/directives/panels/CompanyTasksGraph.js"></script>
+    <script src="js/directives/panels/CompanyUsers.js"></script>
+    <script src="js/directives/panels/InboxAssignments.js"></script>
+    <script src="js/directives/panels/InboxTasks.js"></script>
+    <script src="js/directives/panels/MyGroups.js"></script>
+    <script src="js/directives/panels/MyProjects.js"></script>
+    <script src="js/directives/panels/MyTaskTemplates.js"></script>
+    <script src="js/directives/panels/Panel.js"></script>
+    <script src="js/directives/panels/WatchedTasks.js"></script>
+    <script src="js/directives/panels/WatchedAssignments.js"></script>
+    <script src="js/directives/panels/WatchedTaskTemplates.js"></script>
+
+
+
+
+
+    <script src="js/directives/AccordionCustom.js"></script>
+    <script src="js/directives/AccordionSortable.js"></script>
+    <script src="js/directives/AssigneeSelect.js"></script>
+    <script src="js/directives/AssignmentsTable.js"></script>
+    <script src="js/directives/Autofocus.js"></script>
+    <script src="js/directives/Comments.js"></script>
+    <script src="js/directives/DatePicker.js"></script>
+    <script src="js/directives/DateTimePicker.js"></script>
+    <script src="js/directives/DirtyTracking.js"></script>
+    <script src="js/directives/EdgeContextMenu.js"></script>
+    <script src="js/directives/ErrSrc.js"></script>
+    <script src="js/directives/ESTARSGraph.js"></script>
+    <script src="js/directives/FileUpload.js"></script>
+    <script src="js/directives/FormGroup.js"></script>
+    <script src="js/directives/Icon.js"></script>
+    <script src="js/directives/IconSelect.js"></script>
+    <script src="js/directives/LogoUpload.js"></script>
+    <script src="js/directives/NgEnter.js"></script>
+    <script src="js/directives/NgTab.js"></script>
+    <script src="js/directives/OutputText.js"></script>
+
+    <script src="js/directives/ResultCountOptions.js"></script>
+    <script src="js/directives/Sort.js"></script>
+    <script src="js/directives/StatusIcon.js"></script>
+    <script src="js/directives/SubTasks.js"></script>
+    <script src="js/directives/Switch.js"></script>
+    <script src="js/directives/TaskFromTemplate.js"></script>
+    <script src="js/directives/TasksTable.js"></script>
+    <script src="js/directives/TaskTemplatesTable.js"></script>
+    <script src="js/directives/TextArea.js"></script>
+    <script src="js/directives/TextBox.js"></script>
+    <script src="js/directives/VertexContextMenu.js"></script>
+    <script src="js/directives/WatchIcon.js"></script>
+
+    <script src="js/filters/CustomDate.js"></script>
+    <script src="js/filters/DateFilter.js"></script>
+    <script src="js/filters/FavoriteFilter.js"></script>
+    <script src="js/filters/GroupFilter.js"></script>
+    <script src="js/filters/BlankFilter.js"></script>
+
+    <script src="js/filters/OrderTasksVerticesFilter.js"></script>
+    <script src="js/filters/ProjectFilter.js"></script>
+
+    <script src="js/filters/StatusFilter.js"></script>
+    <script src="js/filters/TypeOfFilter.js"></script>
+
+    <script src="js/services/AppDetailService.js"></script>
+    <script src="js/services/AssignmentService.js"></script>
+    <script src="js/services/AssignmentTemplateService.js"></script>
+    <script src="js/services/AuthorizationService.js"></script>
+    <script src="js/services/CacheService.js"></script>
+    <script src="js/services/CommentService.js"></script>
+    <script src="js/services/CompanyService.js"></script>
+    <script src="js/services/CurrentUserService.js"></script>
+    <script src="js/services/DecisionService.js"></script>
+    <script src="js/services/DialogService.js"></script>
+    <script src="js/services/EdgeService.js"></script>
+    <script src="js/services/EdgeTemplateService.js"></script>
+    <script src="js/services/ExportService.js"></script>
+    <script src="js/services/GroupLookupService.js"></script>
+    <script src="js/services/GroupService.js"></script>
+    <script src="js/services/HomeSettingsService.js"></script>
+    <script src="js/services/ProjectLookupService.js"></script>
+    <script src="js/services/PanelService.js"></script>
+    <script src="js/services/ProjectLookupService.js"></script>
+    <script src="js/services/ProjectService.js"></script>
+    <script src="js/services/RoleService.js"></script>
+    <script src="js/services/StatusService.js"></script>
+    <script src="js/services/StatusLookupService.js"></script>
+    <script src="js/services/TaskService.js"></script>
+    <script src="js/services/TaskTemplateService.js"></script>
+    <script src="js/services/UserDetailsService.js"></script>
+    <script src="js/services/UserLookupService.js"></script>
+    <script src="js/services/UserService.js"></script>
+    <script src="js/services/VertexService.js"></script>
+    <script src="js/services/VertexTemplateService.js"></script>
+    <script src="js/services/VisibilityService.js"></script>
+    <script src="js/services/BoardService.js"></script>-->
+</body>
+</html>

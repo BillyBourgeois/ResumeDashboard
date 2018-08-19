@@ -1,0 +1,21 @@
+﻿<span class="" ng-click="toggleOpen()">
+   
+    <span class="input-group input-group-sm pointer" ng-focus="toggleOpen()"  ng-click="toggleOpen()">
+        <input readonly ng-model="ngModel" class="form-control input-sm pointer" ng-focus="toggleOpen()"/>
+        <span class="input-group-addon input-sm"  uib-popover-template="popupTemplateUrl"
+                  popover-is-open="isOpen"
+                  popover-enabled="!ngDisabled"
+                  popover-placement="auto bottom-left"
+                  popover-trigger="click, outsideClick"
+                  popover-append-to-body="true"
+                  popover-animation="true"
+                  popover-class="popover-sm"
+                  style="line-height:1"
+                  ng-click="toggleOpen()">
+
+            <svg class="icon-sm" id="svgIcon" style="line-height: 1;">
+                <use  xlink:href="{{'Content/svgIcons/icons.svg#' + ngModel}}" />
+            </svg>
+        </span>
+    </span>
+</span>

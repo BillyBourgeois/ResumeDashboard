@@ -1,0 +1,27 @@
+﻿<div>
+    <div class="input-group">
+        <input class="form-control {{inputClass}}"
+               uib-datepicker-popup="MM-dd-yyyy"
+               type="text"
+               datepicker-options="dateOptions"
+               date-disabled="disabled(date, mode)"
+               ng-disabled="ngDisabled"
+               is-open="show"
+               ng-model="ngModel" 
+               min-date="minDate"
+               ng-click="open($event)"
+               ng-show="!ngDisabled" 
+               />
+        <span class="input-group-btn" ng-show="!ngDisabled">
+            <button class="btn btn-default {{btnClass}}" 
+                ng-disabled="ngDisabled" 
+                ng-click="open($event)">
+                <i class="glyphicon glyphicon-calendar" />
+            </button>
+        </span>
+    </div>
+    <span class="form-control disabled" 
+        ng-show="ngDisabled" 
+        ng-bind-html="ngModel | customDate | blank">
+    </span>
+</div>

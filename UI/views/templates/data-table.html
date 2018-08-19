@@ -1,0 +1,90 @@
+﻿<div ng-class="{'col-sm-4': width == 'sm','col-sm-8': width == 'md', 'col-sm-12': width == 'lg'}">
+    <spinner ng-model="spin" ng-cloak>
+        <div style="padding-bottom: 5px;">
+            <result-count-options ng-if="filtered.length"
+                                  total="filtered.length"
+                                  max-results="null"
+                                  on-change="setPerPage"
+                                  default-set-size="perPage">
+            </result-count-options>
+        </div>
+        <div style="margin-bottom: 0;">
+            <div class="table-responsive" ng-show="ngModel.length > 0">
+                <table class="table table-hover table-bordered table-striped" style="margin-bottom: 5px;">
+                    <thead>
+                        <tr id="titleRow">
+                            <th ng-show="!hideId" sort ng-model="order" reverse="reverse" order="'id'">
+                                <number-filter  filter="idFilter"></number-filter>
+                                Id
+                            </th>
+                            <th ng-show="!hideName" sort ng-model="order" reverse="reverse" order="'name'">
+                                <contains-filter  filter="nameFilter"></contains-filter>
+                                Name
+                            </th>
+                            <th ng-show="!hideDescription" sort ng-model="order" reverse="reverse" order="'description'">
+                                <contains-filter ng-if="descriptionFilter" filter="descriptionFilter"></contains-filter>
+                                Description
+                            </th>
+                            <th ng-show="!hideYears" sort ng-model="order" reverse="reverse" order="'years'">
+                                <number-filter ng-if="yearsFilter" filter="yearsFilter"></number-filter>
+                                Years
+                            </th>
+                            <th ng-show="!hideProficiency" sort ng-model="order" reverse="reverse" order="'proficiency'">
+                                <select-filter  filter="proficiencyFilter"></select-filter>
+                                Proficiency
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody id="assignmentsBody">
+                        <tr ng-repeat="item in limited=(filtered = (ngModel
+                                | numberFilter: idFilter
+                                | containsFilter: nameFilter
+                                | containsFilter: descriptionFilter
+                                | numberFilter: yearsFilter
+                                | selectedItemFilter: proficiencyFilter
+                                | orderBy: order : reverse)
+                                | limitTo: perPage : (currentPage-1)*perPage:perPage)
+                                ">
+                            <td ng-show="!hideId">{{ item.id }}</td>
+                            <td ng-show="!hideName">
+                                <span ng-bind-html="item.name | blank"></span>
+                            </td>
+                            <td ng-show="!hideDescription">
+                                <span ng-bind-html="item.description | blank"></span>
+                            </td>
+                            <td ng-show="!hideYears">
+                                <span ng-bind-html="item.years | blank"></span>
+                            </td>
+                            <td ng-show="!hideProficiency">
+                                <span ng-bind-html="item.proficiency | blank"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pull-left">
+                    <span ng-show="showRefresh()" class="btn btn-xs btn-default" ng-click="refresh()">Refresh</span>
+                    <!--<span class="btn btn-xs btn-default" ng-click="exportAssignments(filtered, fileName)">Export</span>-->
+                </div>
+                <div class="badge pull-right">
+                    Showing <span ng-bind="filtered.length != 0 ? ((currentPage - 1) * perPage) + 1 : 0"></span> through <span ng-bind="(((currentPage -1) * perPage)) + (limited.length) "></span> of <span ng-bind="filtered.length"></span>
+                </div>
+                <div class="text-center" ng-show="filtered.length > perPage">
+                    <uib-pagination total-items="filtered.length"
+                                    ng-model="currentPage"
+                                    class="pagination-sm"
+                                    items-per-page="perPage"
+                                    rotate="true"
+                                    style="margin-top: 0;"
+                                    max-size="3"></uib-pagination>
+                </div>
+                <div ng-show="filtered.length <= perPage" style="padding-bottom:40px">
+                </div>
+            </div>
+            <div class="pTop10" ng-show="ngModel.length == 0" ng-class="{'col-sm-4': width == 'sm','col-sm-8': width == 'md', 'col-sm-12': width == 'lg'}">
+                <h4 class="alert alert-warning alert-no-list text-center" style="margin-bottom: 4px;">No results</h4>
+                <span ng-show="showRefresh()" class="btn btn-xs btn-default" ng-click="refresh()">Refresh</span>
+            </div>
+        </div>
+    </spinner>
+</div>

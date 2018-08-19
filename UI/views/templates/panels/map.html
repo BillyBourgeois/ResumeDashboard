@@ -1,0 +1,11 @@
+﻿<div>
+    <form class="form-inline">
+        <label>Zip Code</label>
+        <input name="zipcode" type="number" class="form-control" ng-model="userEntry"/>
+        <button type="submit" class="btn btn-default" ng-click="findZip()">find zip</button>
+    </form>
+
+    <google-map ng-model="zipCode">
+
+    </google-map>
+</div>

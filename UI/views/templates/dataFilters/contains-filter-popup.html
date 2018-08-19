@@ -1,0 +1,22 @@
+﻿<div class="containsFilter">
+    <ul>
+        <li ng-repeat="item in filter.items track by $index" ng-click="$event.stopPropagation(); removeItem($index)">
+            <span ng-hide="item == ''">
+                <span class="glyphicon glyphicon-remove remove" style="color:#5b1616"></span>
+                <span>Contains "</span><span ng-bind="item"></span><span>"</span>
+            </span>
+        </li>
+    </ul>
+    <form class="form-inline">
+        <input type="text" 
+               ng-model="filter.items[filter.items.length - 1]" 
+               class="form-control input-sm" 
+               ng-click="$event.stopPropagation()" 
+               ng-focus="addBlankItem()"
+               ng-blur="addBlankItem()"
+               ng-tab="addBlankItem()"
+               ng-enter="close()"
+               ng-change="setDirty()"
+               autofocus="true"/>
+    </form>
+</div>

@@ -1,0 +1,26 @@
+﻿<div>
+    <form name="dialogForm">
+        <div class="modal-header dialog-header-confirm">
+            <h5 class="modal-title text-center" id="modal-title">{{$ctrl.title}}</h5>
+        </div>
+        <div class="modal-body">
+            <div>{{$ctrl.message}}</div>
+
+            <text-area ng-model="$ctrl.inputText"
+                       ng-maxlength="$ctrl.maxlength"
+                       ng-minlength="$ctrl.minlength"
+                       rows="4"
+                       placeholder="{{$ctrl.placeholder}}"
+                       ng-required="$ctrl.required"
+                       name="dialogInput"
+                       width="xl"
+                       tabindex="0"
+                       ng-disabled="false"
+                       autofocus="true"></text-area>            
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-default" type="submit" ng-click="$ctrl.continue()" ng-disabled="dialogForm.$invalid">Continue</button>
+            <button class="btn btn-default" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,269 @@
+﻿<div>
+    <div class="">
+        <div id="flowchart-step-details"
+             style="border-left: 1px solid #dddddd; border-bottom: 1px solid #dddddd">
+            <form class="form-vertical"
+                  id="stepPanelForm"
+                  name="accordionModel.stepPanelForm" novalidate>
+                <fieldset>
+                    <legend style="padding-left: 24px; margin-bottom: 8px !important">
+                        <span>{{role.name}} Details</span>
+                    </legend>
+                    <div class="col-xs-offset-1 col-xs-10">
+                        <!--Due Date-->
+                        <div class="form-group">
+                            <label for="stepDueDate"
+                                   class="control-label">
+                                Due Date
+                            </label>
+                            <span class="col-xs-12">
+                                <date-time-picker ng-model="accordionModel.vertex.dueDate"
+                                                  min-date="minVertexDueDate"
+                                                  max-date="maxVertexDueDate"
+                                                  hide-clear="maxVertexDueDate != null"
+                                                  show-weeks="true"
+                                                  ng-disabled="vertexDisabled">
+                                </date-time-picker>
+                            </span>
+                        </div>
+                        <!--<div>-->
+                        <!--Name-->
+                        <div class="form-group">
+                            <label for="stepName"
+                                   class="control-label">
+                                Name
+                            </label>
+                            <div ng-hide="vertexDisabled">
+                                <span class="col-xs-12">
+                                    <input type="text"
+                                           id="stepName"
+                                           name="stepName"
+                                           class="form-control col-xs-12"
+                                           ng-model="accordionModel.vertex.name"
+                                           placeholder="Add Name (Optional)"
+                                           ng-maxlength="50"
+                                           maxlength="50"
+                                           ng-blur="stepNameFocus = false"
+                                           ng-focus="stepNameFocus = true"
+                                           ng-disabled="vertexDisabled" />
+                                </span>
+                                <label class="control-label hidden-xs col-sm-3"></label><!--for alignment-->
+                                <span class="col-xs-12" style="min-width: 200px; min-height: 18px; padding-bottom: 0 !important">
+                                    <span class="pull-left"
+                                          ng-messages="accordionModel.stepPanelForm.stepName.$error"
+                                          ng-if="accordionModel.stepPanelForm.stepName.$dirty || accordionModel.stepPanelForm.stepName.$touched"
+                                          style="padding-left: 0; max-height: 25px; max-width: 125px; overflow: hidden">
+                                        <span ng-messages-include="views/templates/messages.html"></span>
+                                    </span>
+                                    <span class="pull-right fade-in"
+                                          ng-show="stepNameFocus && 50 != null"
+                                          style="padding-left: 0">
+                                        <span class="badge smaller" style="margin-top: 2px;">
+                                            {{50 - accordionModel.vertex.name.length}} / {{50}}
+                                        </span>
+                                    </span>
+                                </span>
+                            </div>
+                            <div ng-show="vertexDisabled">
+                                <span class="col-xs-12">
+                                    <span class="form-control" ng-disabled="true" ng-bind-html="accordionModel.vertex.name | blank"></span>
+                                </span>
+                            </div>
+                        </div>
+                        <!--Status-->
+                        <div class="form-group">
+                            <label for="status"
+                                   class="control-label">
+                                Status
+                            </label>
+                            <span class="col-xs-12">
+                                <span class="form-control" ng-disabled="true" ng-bind="accordionModel.vertex.status_Id | status"></span>
+                            </span>
+                        </div>
+                        <!--Instructions-->
+                        <div class="form-group">
+                            <label for="instructions" class="control-label pull-left">
+                                Instructions
+                            </label>
+                            <div ng-hide="vertexDisabled">
+                                <span class="col-xs-12">
+                                    <textarea id="instructions"
+                                              name="instructions"
+                                              class="form-control"
+                                              ng-model="accordionModel.vertex.instructions"
+                                              rows="3"
+                                              placeholder="Add Instructions (Optional)"
+                                              ng-maxlength="300"
+                                              maxlength="300"
+                                              ng-blur="stepInstructionsFocus = false"
+                                              ng-focus="stepInstructionsFocus = true" />
+                                </span>
+                                <label class="control-label hidden-xs col-sm-3"></label>
+                                <span class="col-xs-12" style="min-width: 200px; min-height: 18px; padding-bottom: 0 !important">
+                                    <span class="pull-left"
+                                          ng-messages="accordionModel.stepPanelForm.instructions.$error"
+                                          ng-if="accordionModel.stepPanelForm.instructions.$dirty || accordionModel.stepPanelForm.instructions.$touched"
+                                          style="padding-left: 0; max-height: 25px; max-width: 125px; overflow: hidden">
+                                        <span ng-messages-include="views/templates/messages.html"></span>
+                                    </span>
+                                    <span class="pull-right fade-in"
+                                          ng-show="stepInstructionsFocus && 300 != null"
+                                          style="padding-left: 0">
+                                        <span class="badge smaller" style="margin-top: 2px;">
+                                            {{300 - accordionModel.vertex.instructions.length}} / {{300}}
+                                        </span>
+                                    </span>
+                                </span>
+                                <div ng-show="vertexDisabled">
+                                    <div class="col-xs-12">
+                                        <span class="form-control" ng-disabled="true" ng-bind-html="accordionModel.vertex.instructions | blank"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Save-->
+                        <div class="form-group">
+                            <span class="col-xs-12">
+                                <button class="btn btn-default pull-left"
+                                        ng-class="{'btn-success': recentlySavedSuccess, 'btn-danger':recentlySavedFailure}"
+                                        ng-click="saveVertex()"
+                                        ng-disabled="accordionModel.stepPanelForm.$pristine">
+                                    Save
+                                    <span class="glyphicon glyphicon-save" style="padding: 5px;"></span>
+                                </button>
+                            </span>
+                        </div>                        
+                    </div>
+                </fieldset>
+            </form>
+            <p></p>
+            <form>
+                <fieldset>
+                    <div class="col-xs-offset-1 col-xs-10">
+                        <div class="form-group"
+                             ng-show="accordionModel.vertex.assignments != undefined && accordionModel.vertex.assignments.length > 0">
+                            <label for="vertex.assignments" class="control-label col-xs-12">
+                                <span>Assignments</span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group col-sm-12">
+                                <ul style="padding-left: 8px;">
+                                    <li class="input-group" width="mid" ng-repeat="assignment in accordionModel.vertex.assignments">
+                                        <span class="btn btn-default input-group-addon"
+                                              ng-show="(assignment.status_Id == status.Declined && vertex.status_Id == status.Declined && !alreadyReassigned(assignment, accordionModel.vertex.assignments)) && !(accordionModel.vertex.type=='Assignment' && getActiveAssignmentCount(accordionModel.vertex.assignments) > 0)"
+                                              ng-click="reassign(assignment)" uib-tooltip="Reassign">
+                                            <span class="glyphicon glyphicon-repeat" style="color:green"></span>
+                                        </span>
+                                        <span class="input-group-addon" null" style="width: 100%; text-align: left;" ng-disabled="true">
+                                            <status-icon ng-model="assignment.status_Id"></status-icon>
+                                            <span tooltip-append-to-body="true" uib-tooltip-template="'views/templates/assignment-status-tooltip.html'">
+                                                <span ng-show="assignment.user_Id != null" ng-bind="assignment.user_Id | fullName"></span>
+                                                <span ng-show="assignment.group_Id != null" ng-bind="assignment.group_Id | group"></span>
+                                                <a ng-show="taskOwner() || task.status_Id > 1" class="smaller" ng-href="{{'index.html#/editAssignment/' + assignment.id}}">(view)</a>
+
+                                            </span>
+                                        </span>
+                                        <span class="input-group-btn">
+                                            <button ng-disabled="(getActiveAssignmentCount(accordionModel.vertex.assignments) <= 1 && accordionModel.vertex.type == 'Step')  ||
+                                                                         assignment.status_Id == status.Complete ||
+                                                                         assignment.status_Id == status.Unreachable ||
+                                                                         assignment.status_Id == status.Declined ||
+                                                                         assignment.status_Id == status.InProgress ||
+                                                                         assignment.status_Id == status.Withdrawn ||
+                                                                         assignment.status_Id == status.Rework ||
+                                                                         vertex.status_Id == Complete ||
+                                                                         vertex.status_Id == Withdrawn
+                                                            " class="btn btn-default" type="button" ng-click="removeAssignment(assignment)">
+                                                Remove
+                                            </button>
+                                        </span>
+                                    </li>
+                                    <li ng-show="accordionModel.vertex.assignments == undefined || accordionModel.vertex.assignments.length == 0">
+                                        <div class="alert alert-warning" style="width: 100%">
+                                            <span class="hidden-md hidden-lg">NA</span>
+                                            <span class="hidden-xs hidden-sm">No assignments have been added.</span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div ng-hide="vertexDisabled" class="form-group">
+                            <label for="vertex.assignments" class="control-label col-xs-12"><span>Add Assignee</span></label>
+                            <div class="col-xs-10">
+                                <div class="btn-group">
+                                    <div class="btn btn-default" ng-model="accordionModel.showUser" uib-btn-radio="'User'" style="border-bottom-left-radius: 0;">User</div>
+                                    <span class="btn btn-default" ng-model="accordionModel.showUser" uib-btn-radio="'Group'" style="border-bottom-right-radius: 0;">Group</span>
+                                </div>
+                            </div>
+                            <ng-switch on="accordionModel.showUser">
+                                <div ng-switch-when="User">
+                                    <div class="col-xs-12">
+                                        <div class="input-group ">
+                                            <input type="text"
+                                                   ng-model="accordionModel.stepSelectedUser"
+                                                   class="form-control"
+                                                   name="stepAssigneeTypeAhead"
+                                                   id="stepAssigneeTypeAhead"
+                                                   uib-typeahead="user as user.lastName + ', ' + user.firstName for user in companyUsers | filter:whereIdsNotIn(assignmentUserIds) | filter:fullNameCompare($viewValue) | limitTo:8">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default"
+                                                        type="button"
+                                                        id="stepAddUserButton"
+                                                        style="width: 90px;"
+                                                        ng-click="stepAddUser(accordionModel.stepPanelForm)"
+                                                        ng-disabled="!accordionModel.stepSelectedUser.id">
+                                                    &nbsp;&nbsp;&nbsp;Add&nbsp;&nbsp;&nbsp;
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div ng-switch-when="Group">
+                                    <div class="col-xs-12">
+                                        <div class="input-group" show-errors>
+                                            <select name="stepSelectedGroupControl"
+                                                    id="stepSelectedGroupControl"
+                                                    class="form-control"
+                                                    ng-model="accordionModel.stepSelectedGroup"
+                                                    ng-options="group as group.name for group in companyGroups | filter:whereIdsNotIn(assignmentGroupIds) | orderBy: 'name'"></select>
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-default"
+                                                        type="button"
+                                                        style="width:90px;"
+                                                        ng-click="stepAddGroup()"
+                                                        ng-disabled="!accordionModel.stepSelectedGroup.id">
+                                                    Add
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-switch>
+                        </div>
+                    </div>
+                </fieldset>
+                <div>
+                    &nbsp;
+                </div>
+                <fieldset>
+                    <div class="col-xs-offset-1 col-xs-10">
+                        <!--Due Date-->
+                        <button class="btn btn-default btn-block btn-warning"
+                                name="resumeProgress"
+                                ng-click="resumeProgress()"
+                                ng-show="taskOwner() && (vertex.status_Id == status.Declined && (getCompleteAssignmentCount(accordionModel.vertex.assignments) > 0 || getInProgressAssignmentCount(accordionModel.vertex.assignments) > 0 || getDraftAssignmentCount(accordionModel.vertex.assignments) > 0 ))">
+                            Resume Progress
+                            <span style="padding: 5px;">
+                                <span class="glyphicon glyphicon-option-horizontal" style="margin-right: -3px; top: 2px;"></span>
+                                <span class="glyphicon glyphicon-arrow-right"></span>
+                            </span>
+                        </button>
+                    </div>
+                </fieldset>
+            </form>
+
+
+        </div>
+    </div>
+</div>

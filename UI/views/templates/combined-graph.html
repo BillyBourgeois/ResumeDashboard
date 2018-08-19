@@ -1,0 +1,40 @@
+﻿<div>
+    <spinner ng-model="spin" ng-cloak>
+        <div class="col-xs-12" style="padding-bottom: 10px;">
+            <div class="btn-group btn-group-sm left" data-toggle="buttons">
+                <label class="btn btn-sm btn-switch btn-default col-xs-offset-1"
+                       ng-model="type"
+                       uib-btn-radio="'donut'">
+                    <span class="glyphicon glyphicon-record"></span>
+                    Pie
+                </label>
+                <label class="btn btn-sm btn-switch btn-default  col-xs-offset-1"
+                       ng-model="type"
+                       uib-btn-radio="'bar'">
+                    <span class="glyphicon glyphicon-stats"></span>
+                    Bar
+                </label>
+                <label class="btn btn-sm btn-switch btn-default  col-xs-offset-1"
+                       ng-model="type"
+                       uib-btn-radio="'list'"
+                       ng-click="onClick()">
+                    <span class="glyphicon glyphicon-list"></span>
+                    List
+                </label>
+            </div>
+        </div>
+
+
+        <div ng-if="!spin" ng-cloak ng-class="{'visible': !spin}" style="visibility: hidden;">
+            <div class="col-xs-12" style="overflow-x: hidden;overflow-y:hidden">
+                <div class="overlayContainer">
+                    <bar-graph class="animate-hide col-xs-12" query-url="{{queryUrl}}" ng-show="type == 'bar' && !spin" ng-model="graphData"></bar-graph>
+                    <donut-graph class="animate-hide col-xs-12" query-url="{{queryUrl}}" ng-show="type == 'donut' && !spin" ng-model="graphData"></donut-graph>
+                    <span class="animate-hide col-xs-12" ng-show="type == 'list' && !spin">
+                        <dable ng-model="listData"></dable>
+                    </span>                    
+                </div>
+            </div>
+        </div>
+    </spinner>
+</div>

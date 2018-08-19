@@ -1,0 +1,71 @@
+﻿<div>
+    <spinner ng-model="spin">
+        <output-text model="user.firstName"
+                     label="First Name"
+                     name="firstName"
+                     width="lg"></output-text>
+        <output-text model="user.middleName | blank"
+                     label="Middle Name"
+                     name="middleName"
+                     width="lg"></output-text>
+        <output-text model="user.lastName"
+                     label="Last Name"
+                     name="lastName"
+                     width="lg"></output-text>
+        <!-- email address -->
+        <output-text model="user.emailAddress"
+                     label="Email"
+                     name="email"
+                     url="{{'mailto:' + user.emailAddress}}"
+                     width="lg"
+                     ng-show="user.emailAddress"></output-text>
+
+        <output-text model="'' |blank"
+                     label="Email"
+                     name="email"
+                     width="lg"
+                     ng-hide="user.emailAddress"></output-text>
+        <!-- /email address -->
+        <!-- phone numbers -->
+        <div ng-repeat="phoneNumber in user.phoneNumbers" ng-class="{'preferred': phoneNumber.preferred}">
+            <output-text model="phoneNumber.number"
+                         label="{{phoneNumber.type + ' Number'}}"
+                         name="phoneNumber"
+                         url="{{'tel:' + phoneNumber.number}}"
+                         width="lg"></output-text>
+        </div>
+        <output-text model="'' | blank"
+                     label="Phone Number"
+                     name="phoneNumber"
+                     width="lg"
+                     ng-show="user.phoneNumbers.length === 0"></output-text>
+        <!-- /phone numbers -->
+        <!-- website -->
+        <output-text model="user.webSite"
+                     label="Website"
+                     name="email"
+                     url="{{'http://' + user.webSite}}"
+                     width="lg"
+                     ng-show="user.webSite"></output-text>
+
+        <output-text model="'' |blank"
+                     label="Website"
+                     name="website"
+                     width="lg"
+                     ng-hide="user.webSite"></output-text>
+        <!-- /website -->
+        <!-- addresses -->
+        <div ng-repeat="address in user.addresses" ng-class="{'preferred': address.preferred}">
+            <address model="address"
+                         label="{{'Address'}}"
+                         name="address"
+                         width="lg"></address>
+        </div>
+        <output-text model="'' |blank"
+                     label="Address"
+                     name="address"
+                     width="lg"
+                     ng-show="user.addresses.length === 0"></output-text>
+        <!-- addresses -->
+    </spinner>
+</div>

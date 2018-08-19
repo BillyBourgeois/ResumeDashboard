@@ -1,0 +1,23 @@
+﻿<form class="form-inline" name="filterForm">
+    <div class="form-group " style="margin-bottom: 0;">
+        <label for="startDate" class="control-label">Start Date</label>
+        <date-picker ng-model="filter.startDate" 
+                     min-date="filter.minDate" 
+                     max-date="filter.endDate" 
+                     size="'sm'"
+                     on-close="selectHidden"
+                     ></date-picker>
+    </div>
+    <p />
+    <div class="form-group " style="margin-bottom: 0;">
+        <label for="startDate" class="control-label">End Date</label>
+        <date-picker ng-model="filter.endDate"
+                     min-date="filter.startDate"
+                     max-date="filter.maxDate"
+                     size="'sm'"
+                     on-close="selectHidden"
+                     ></date-picker>
+    </div>
+    <input type="text" autofocus class="hiddenDateFilterInput" ng-enter="close()" style="max-height: 0; max-width:0; border: 0; top: 0; left: 0; position: absolute"/>
+</form>
+

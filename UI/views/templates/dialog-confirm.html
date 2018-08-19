@@ -1,0 +1,12 @@
+﻿<div>
+    <div class="modal-header dialog-header-confirm">
+        <h5 class="modal-title text-center" id="modal-title">{{$ctrl.title}}</h5>
+    </div>
+    <div class="modal-body col-xs-offset-1 ">
+        <div>{{$ctrl.message}}</div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-default" type="button" ng-click="$ctrl.yes()">Yes</button>
+        <button class="btn btn-default" type="button" ng-click="$ctrl.no()" autofocus="true">No</button>
+    </div>
+</div>

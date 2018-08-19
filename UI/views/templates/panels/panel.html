@@ -1,0 +1,40 @@
+﻿<div class="panel panel-default">
+    <div ng-click="collapsePanel(column, panel)" role="tab" id="{{::headingId}}" class="panel-heading">
+        <h4 class="panel-title" as-sortable-item-handle>
+            <span class="collapseCard" style="cursor: pointer" no-drag>
+                <span class="glyphicon glyphicon-chevron-right" ng-class="{'open': panel.open}"></span>
+                <span uib-accordion-header>
+                    <span ng-bind="panel.title"></span>                    
+                    <span class="glyphicon glyphicon-pencil smaller edit-icon" ng-click="openRenameDialog($event)" uib-tooltip="Edit"></span>
+                </span>
+            </span>
+            <a class="removeCard btn btn-xs pull-right" ng-click="removePanel(column, panel)" >
+                <span class="glyphicon glyphicon-remove"></span>
+            </a>
+        </h4>
+    </div>
+    <div role="tabpanel" class="panel-collapse collapse" uib-collapse="!panel.open">
+        <div class="panel-body">
+            <div ng-switch="panel.type">
+                <div ng-switch-when="contactInfo">                   
+                    <contact-info ng-if="userId" user-id="userId"></contact-info>
+                </div>
+                <div ng-switch-when="skills">
+                    <skills ng-if="userId" user-id="userId"></skills>
+                </div>
+                <div ng-switch-when="hobbies">
+                    <hobbies ng-if="userId" user-id="userId"></hobbies>
+                </div>
+                <div ng-switch-when="jobs">
+                    <jobs ng-if="userId" user-id="userId"></jobs>
+                </div>
+                <div ng-switch-when="degrees">
+                    <degrees ng-if="userId" user-id="userId"></degrees>
+                </div>
+                <div ng-switch-when="map">
+                    <map name="myMap"></map>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

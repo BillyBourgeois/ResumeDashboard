@@ -1,0 +1,102 @@
+﻿<div class="col-xs-11" style="padding-left: 0;">
+    <div class="col-xs-12" style="padding-left: 0">
+        <div class="form-group" style="margin-bottom: 0;">
+            <label class="control-label col-xs-12 col-sm-3">{{label}}</label>
+            <div ng-class="{'col-sm-3': width == 'sm','col-sm-6': width == 'md', 'col-sm-8': width == 'lg'}">
+                <div class="table-responsive" ng-show="ngModel.length > 0">
+                    <table class="table table-hover table-bordered table-striped table-condensed" style="margin-bottom: 5px;">
+                        <thead>
+                            <tr>
+                                <th sort ng-model="subTaskOrder" reverse="subTaskOrderReverse" order="'parentAssignment_Id'">
+                                    <select-filter filter="parentFilter"></select-filter>
+                                    Parent
+                                </th>
+                                <th sort ng-model="subTaskOrder" reverse="subTaskOrderReverse" order="'id'">
+                                    <number-filter filter="taskIdFilter"></number-filter>
+                                    Id
+                                </th>
+                                <th sort ng-model="subTaskOrder" reverse="subTaskOrderReverse" order="'taskNumber'">
+                                    <contains-filter filter="taskNumberFilter"></contains-filter>
+                                    Number
+                                </th>
+                                <th sort ng-model="subTaskOrder" reverse="subTaskOrderReverse" order="'title'">
+                                    <contains-filter filter="titleFilter"></contains-filter>
+                                    Title
+                                </th>
+                                <th sort ng-model="subTaskOrder" reverse="subTaskOrderReverse" order="'owner_Id | fullName'">
+                                    <contains-filter filter="taskOwnerFilter"></contains-filter>
+                                    Owner
+                                </th>
+                                <th sort ng-model="taskTasksOrder" reverse="subTaskOrderReverse" order="'status.id | status'">
+                                    <select-filter filter="statusFilter"></select-filter>
+                                    Status
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="subTask in filteredSubTasks = (ngModel
+                                | selectedItemFilter: statusFilter
+                                | selectedItemFilter: parentFilter
+                                | numberFilter: taskIdFilter
+                                | containsFilter: taskNumberFilter
+                                | containsFilter: titleFilter
+                                | containsFilter: taskOwnerFilter
+                                | orderBy: subTaskOrder : subTaskOrderReverse)
+                                | limitTo: subTasksPerPage : (currentPage-1)*subTasksPerPage:subTasksPerPage
+                                ">
+                                <td>
+                                    <span ng-show="subTask.parentAssignment_Id == null">
+                                        <a target="_blank" href="index.html#/editTask/{{subTask.parentTask_Id}}">Task</a>
+                                    </span>
+                                    <span ng-show="subTask.parentAssignment_Id != null">
+                                        <a target="_blank" href="index.html#/editAssignment/{{subTask.parentAssignment_Id}}">Assignment</a>
+                                    </span>
+                                </td>
+                                <td>
+                                    <a target="_blank" href="index.html#/editTask/{{subTask.id}}">
+                                        <span ng-bind="subTask.id"> </span>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a target="_blank" href="index.html#/editTask/{{subTask.id}}">
+                                        <span ng-bind-html="subTask.taskNumber | blank"> </span>
+                                    </a>
+                                </td>
+                                <td><span ng-bind="subTask.title"> </span></td>
+                                <td><span ng-bind="subTask.owner_Id | fullName"> </span></td>
+                                <td><span ng-bind="subTask.status_Id | status"> </span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div ng-hide="ngDisabled" style="padding-bottom: 40px">
+                    <div ng-show="filteredSubTasks.length > subTasksPerPage">
+                        <span class="text-center">
+                            <uib-pagination total-items="filteredSubTasks.length" 
+                                            ng-model="currentPage" 
+                                            class="pagination-sm"                                             
+                                            items-per-page="subTasksPerPage" 
+                                            rotate="true" 
+                                            style="margin-top: 0;"
+                                            max-size="3"></uib-pagination>
+                        </span>
+                        <a class="btn btn-sm btn-default pull-right" href="index.html#/createSubTask/simple/{{taskId}}/{{assignmentId}}" target="_blank">
+                            <span class="glyphicon glyphicon-plus green"></span>
+                            <span>Add</span>
+                        </a>
+                    </div>
+                    <div ng-show="filteredSubTasks.length <= subTasksPerPage">
+                        <a class="btn btn-sm btn-default pull-right" ng-click="onAddClick()" ng-class="{'pull-left': ngModel.length == 0}" href="index.html#/createSubTask/simple/{{taskId}}/{{assignmentId}}" target="_blank">
+                            <span class="glyphicon glyphicon-plus green"></span>
+                            <span>Add</span>
+                        </a>
+                    </div>
+                </div>
+                <div ng-show="ngModel.length == 0 && ngDisabled">
+                    <span class="form-control" ng-disabled="true" ng-bind-html="'' | blank : 'None'"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

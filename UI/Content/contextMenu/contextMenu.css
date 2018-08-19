@@ -1,0 +1,149 @@
+﻿/*
+* http://bootsnipp.com/snippets/featured/multi-level-dropdown-menu-bs3
+*/
+.dropdown-submenu {
+    position: relative;
+}
+
+    .dropdown-submenu > .dropdown-menu {
+        top: 0;
+        left: 100%;
+        margin-top: -6px;
+        margin-left: -1px;
+        -webkit-border-radius: 0 6px 6px 6px;
+        -moz-border-radius: 0 6px 6px;
+        border-radius: 0 6px 6px 6px;
+    }
+
+    .dropdown-submenu:hover > .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-submenu > a:after {
+        display: block;
+        content: " ";
+        float: right;
+        width: 0;
+        height: 0;
+        border-color: transparent;
+        border-style: solid;
+        border-width: 5px 0 5px 5px;
+        border-left-color: #ccc;
+        margin-top: 5px;
+        margin-right: -10px;
+    }
+
+    .dropdown-submenu:hover > a:after {
+        border-left-color: #fff;
+    }
+
+    .dropdown-submenu.pull-left {
+        float: none;
+    }
+
+        .dropdown-submenu.pull-left > .dropdown-menu {
+            left: -100%;
+            margin-left: 10px;
+            -webkit-border-radius: 6px 0 6px 6px;
+            -moz-border-radius: 6px 0 6px 6px;
+            border-radius: 6px 0 6px 6px;
+        }
+
+/**
+ * @Directive [customContextMenu]
+ * Styles for context menu dropdown that is visible on right click and 
+ * is appended to the body end. 
+ */
+.custom-context-menu {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 9999;
+}
+.custom-context-menu.shown {
+  display: block;
+}
+.custom-context-menu li {
+  cursor: pointer;
+}
+
+.context-caret:before, .context-caret:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-bottom: 10px solid #fff;
+  z-index: 2;
+}
+.context-caret:after {
+  border-bottom-color: #bbb;
+  z-index: 1;
+}
+.context-caret-top-left {
+  margin: 10px 0 0 -28px;
+}
+.context-caret-top-left:before {
+  left: 20px;
+  top: -10px;
+}
+.context-caret-top-left:after {
+  left: 20px;
+  top: -11px;
+}
+.context-caret-top-right {
+  margin: 10px 0 0 18px;
+}
+.context-caret-top-right:before {
+  left: calc(100% - 26px);
+  top: -10px;
+}
+.context-caret-top-right:after {
+  left: calc(100% - 26px);
+  top: -11px;
+}
+.context-caret-bottom-left {
+  margin: -7px 0 0 -29px;
+}
+.context-caret-bottom-left:before {
+  left: 20px;
+  top: calc(100%);
+  border-bottom-color: transparent;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 10px solid #fff;
+}
+.context-caret-bottom-left:after {
+  left: 20px;
+  top: calc(100% + 1px);
+  border-bottom-color: transparent;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 10px solid #bbb;
+}
+.context-caret-bottom-right {
+  margin: -7px 0 0 18px;
+}
+.context-caret-bottom-right:before {
+  left: calc(100% - 26px);
+  top: calc(100%);
+  border-bottom-color: transparent;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 10px solid #fff;
+}
+.context-caret-bottom-right:after {
+  left: calc(100% - 26px);
+  top: calc(100% + 1px);
+  border-bottom-color: transparent;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 10px solid #bbb;
+}
+
+.twrap {
+  max-height: 400px;
+  overflow: auto;
+}

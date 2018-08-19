@@ -1,0 +1,73 @@
+﻿<div class="col-xs-11" style="padding-left: 0">
+    <div class="col-xs-12" style="padding-left: 0">
+        <div class="form-group" style="margin-bottom: 0;">
+            <label class="control-label col-xs-12 col-sm-3">{{label}}</label>
+            <div ng-class="{'col-sm-3': width == 'sm','col-sm-6': width == 'md', 'col-sm-8': width == 'lg'}">
+                <div class="table-responsive" ng-show="files.length > 0">
+                    <table class="table table-hover table-bordered table-striped table-condensed" style="margin-bottom: 5px;">
+                        <thead>
+                            <tr>
+                                <th sort ng-model="fileOrder" by="fileOrder" reverse="fileOrderReverse" order="'filename'"><contains-filter filter="fileNameFilter"></contains-filter>File</th>
+                                <th sort ng-model="fileOrder" by="fileOrder" reverse="fileOrderReverse" order="'user_Id | fullName'"><contains-filter filter="createdByFilter"></contains-filter>Created By</th>
+                                <th sort ng-model="fileOrder" by="fileOrder" reverse="fileOrderReverse" order="'created'"><date-filter filter="createdDateFilter"></date-filter>Created Date</th>
+                                <th>Assignment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="file in filteredfiles = (files
+                                | containsFilter: fileNameFilter
+                                | containsFilter: createdByFilter
+                                | dateFilter: createdDateFilter
+                                | orderBy: fileOrder : fileOrderReverse)
+                                | limitTo: filesPerPage : (currentPage-1)*filesPerPage:filesPerPage">
+                                <td><a ng-target="_blank" ng-href="{{getFullyQualifiedUri(file.uri)}}" ng-bind="file.filename"></a></td>
+                                <td><span ng-bind="createdByString(file)"></span></td>
+                                <td ng-bind="file.created | customDate"></td>
+                                <td>
+                                    <span ng-show="!file.assignment_Id" ng-bind-html="'' | blank : 'Not Applicable'"> </span>
+                                    <span ng-show="file.assignment_Id" >
+                                        <a ng-target="_blank" ng-href="{{'#/editAssignment/' + file.assignment_Id}}" >
+                                            <span>Role: </span><span ng-bind="file.assignment.vertex.role.name + ','"></span>
+                                            <span>Name: </span><span ng-bind="file.assignment.vertex.name"></span>
+                                        </a>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+                <div style="padding-bottom: 40px" ng-hide="ngDisabled">
+                    <div ng-show="filteredfiles.length > filesPerPage">
+                        <span class="text-center">
+                            <uib-pagination total-items="filteredfiles.length" ng-model="currentPage" class="pagination-sm" boundary-links="true" items-per-page="filesPerPage" rotate="true" style="margin-top: 0;"></uib-pagination>
+                        </span>
+                        <span ng-disabled="uploadActive" class="btn btn-sm btn-default pull-right" ng-click="activateInput()">
+                            <span class="text-center">
+                                <span class="glyphicon green" ng-class="{'glyphicon-plus': !uploadActive, 'glyphicon-refresh spin': uploadActive}"></span>
+                            </span>
+                            <span>{{addLabel()}}</span>
+                        </span>
+                    </div>
+                    <div ng-hide="filteredfiles.length > filesPerPage">
+                        <span ng-disabled="uploadActive" class="btn btn-sm btn-default pull-right" ng-click="activateInput()" ng-class="{'pull-left': files.length == 0}">
+                            <span class="text-center">
+                                <span class="glyphicon green" ng-class="{'glyphicon-plus': !uploadActive, 'glyphicon-refresh spin': uploadActive}"></span>
+                            </span>
+                            <span>{{addLabel()}}</span>
+                        </span>
+                    </div>
+                </div>
+                <!-- real input. hidden but activated by button -->
+                <input type="file" style="display: none;" ng-disabled="ngDisabled || uploadActive">
+                <span ng-show="ngDisabled && files.length == 0">
+                    <span class="form-control" ng-disabled="true">
+                        <span class="italic light small bold" ng-bind="'None'"></span>
+                    </span>
+                </span>
+
+            </div>
+
+        </div>
+    </div>
+</div>

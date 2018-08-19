@@ -1,0 +1,32 @@
+﻿<div class="popover-body-content">
+    <svg display="none" xlink:href="Content/svgIcons/icons.svg">
+
+    </svg>
+        <div class="row" style="margin-top: -9.5px;
+                            margin-bottom: 0;
+                            background-color: rgb(247, 247, 247);
+                            border-top-left-radius: 5px;
+                            border-top-right-radius: 5px;
+                            padding-bottom: 10px;
+                            border-bottom-color: rgb(235, 235, 235);
+                            border-bottom-width: 1px;
+                            border-bottom-style: solid">
+            <div class="col-xs-10 col-xs-offset-1">
+                <label class="control-label">Search </label>
+                <input id="searchTerm" type="text" class="form-control" ng-model="searchTerm" ng-model-options="{debounce: 250}" autofocus="true" ng-keydown="textInputkKeyDown($event)"/>
+            </div>
+        </div>
+        <div class="row" style="max-height: 300px; overflow-y: auto; margin-top: 3px">
+            <div class="col-xs-12" style="padding-left: 0; padding-right: 0">
+                <div class="" data-toggle="buttons">
+                    <label uib-tooltip="{{option}}" tooltip-append-to-body="true" ng-click="setIcon(option)" ng-repeat="option in options | filter: searchTerm" class="btn btn-default" ng-class="{'active': isChecked(option)}"
+                           style="padding-left: 8px; margin-bottom: 10px; margin-left: 10px;" ng-keydown="buttonsKeyDown($event, option)">
+                        <input type="radio" name="options" id="{{option}}" autocomplete="off" ng-checked="isChecked(option)" >
+                        <svg class="icon-sm" style="margin-left: 4px; margin-top: 1px;">
+                            <use xlink:href="" ng-attr-xlink:href="{{'Content/svgIcons/icons.svg#' + option}}"/>
+                        </svg>
+                    </label>
+                </div>
+            </div>
+        </div>
+</div>

@@ -1,0 +1,30 @@
+﻿<div class="alert alert-comment">
+    <div class="alert-comment-header">
+        
+        <label>
+            <span class="underline" ng-bind-html="ngModel.subject"></span>
+            <span> &bull; </span>
+            <span ng-bind="commenterString()"></span>
+            <span> &bull; </span>
+            <span ng-bind-html="ngModel.created | customDate"></span>
+        </label>
+    </div>
+    <div class="alert-comment-body comment-body-{{ngModel.id}}">
+        <span class="glyphicon glyphicon-comment light smaller" ng-show="{{ngModel.parent_Id ==  null}}"></span>
+        <span class="glyphicon glyphicon-share-alt light smaller upsidedown" ng-show="{{ngModel.parent_Id > 0}}"></span>
+
+        <span>{{ngModel.comments}}</span>
+        <div class="pointer alert-comment-header open" data-toggle="collapse" ng-click="toggleOpen()" ng-show="ngModel.children.length > 0">
+            <span class="glyphicon glyphicon-chevron-right small" ng-class="{'open': isOpen}"></span>
+            <span ng-show="ngModel.children.length == 1"><b><i>{{ngModel.children.length}} Reply</i></b></span>
+            <span ng-show="ngModel.children.length > 1"><b><i>{{ngModel.children.length}} Replies</i></b></span>
+        </div>
+        <div uib-collapse="!isOpen">
+            <div ng-repeat="child in ngModel.children | orderBy: 'created': false">
+                <comment task-id="taskId" ng-model="child" ng-disabled="ngDisabled" current-user-id="{{currentUserId}}" active-user-id="{{activeUserId}}" on-save="onSave"></comment>
+            </div>
+        </div>
+    </div>
+    <edit-comment parent-id="ngModel.id" task-id="taskId" ng-disabled="ngDisabled" current-user-id="{{currentUserId}}" active-user-id="{{activeUserId}}" on-save="onSave"></edit-comment>
+</div>
+

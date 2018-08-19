@@ -1,0 +1,55 @@
+﻿<div data-ng-model="board" id="board">
+    <div class="row">
+        <div class="col-sm-12 visible-sm visible-md visible-lg" style="padding-bottom: 5px; padding-top: 5px; padding-right: 2px; padding-left: 2px;">
+            <div class="col-sm-12 settings-panel">
+                <span class="" uib-dropdown>
+                    <a href=""
+                         class="btn btn-xs btn-default"
+                         role="button"
+                         uib-dropdown-toggle>
+                        Add a Panel <span class="glyphicon glyphicon-menu-down"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" uib-dropdown-menu>
+                        <li ng-repeat="panel in availablePanels  | orderBy : 'title'">
+                            <a ng-click="addPanel(board.columns[0], panel)"
+                               ng-bind="panel.title">
+                            </a>
+                        </li>
+                    </ul>
+                </span>
+                <div class="pull-right">
+                    <span class="bold">Columns: </span>
+                    <span class="btn-group btn-group-xs">
+                        <label class="btn btn-default btn-xs" ng-model="board.numberOfColumns" uib-btn-radio="1" uncheckable>1</label>
+                        <label class="btn btn-default btn-xs" ng-model="board.numberOfColumns" uib-btn-radio="2" uncheckable>
+                            2
+                        </label>
+                        <label class="btn btn-default btn-xs" ng-model="board.numberOfColumns" uib-btn-radio="3" uib-uncheckable="uncheckable">
+                            3
+                        </label>
+                        <label class="btn btn-default btn-xs" ng-model="board.numberOfColumns" uib-btn-radio="4" uib-uncheckable="uncheckable">
+                            4
+                        </label>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="columns" class="row">
+        <div ng-repeat="column in board.columns"
+             class="{{getColumnWidth($index)}}"
+             data-columnindex="{{$index}}" id="column{{$index}}"
+             style="padding-left: 2px; padding-right: 2px">
+            <div class="column">
+                <ul class="cards card-list" as-sortable="boardSortOptions" data-ng-model="column.panels" style="min-height: 50px; padding-bottom: 10px;">
+                    <li ng-repeat="panel in column.panels">                        
+                        <div ng-if="panel.type">                            
+                            <div as-sortable-item board="board" panel="panel" user-Id="userId" column="column"></div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

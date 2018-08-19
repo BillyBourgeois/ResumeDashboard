@@ -1,0 +1,81 @@
+﻿<div>
+    <div class="alert alert-comment alert-group" style="margin-top: 10px;">
+        <div ng-show="isBase" class="form-inline" style="padding-bottom: 10px;">
+            <span class="form-group">
+                <label>Query Type </label>
+                <span>
+                    <select ng-options="queryType as queryType.name for queryType in queryTypes" ng-model="queryType" ng-change="clearQuery()" class="form-control input-xs"></select>
+                </span>
+            </span>
+        </div>
+        <div class="form-inline">
+            <select ng-options="operator as operator.name for operator in operators" ng-model="group.operator" class="form-control input-xs"></select>
+
+            <button style="margin-left: 5px" ng-click="addCondition()" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add Condition</button>
+            <button style="margin-left: 5px" ng-click="addGroup()" class="btn btn-xs btn-success"><span class="glyphicon glyphicon-plus-sign"></span> Add Group</button>
+            <button style="margin-left: 5px" ng-click="removeGroup()" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus-sign"></span> Remove Group</button>
+        </div>
+        <div class="group-conditions">
+            <div ng-repeat="rule in group.rules | orderBy:'index' | orderBy: '-group'" class="condition">
+                <div ng-switch="rule.hasOwnProperty('group')">
+                    <div ng-switch-when="true">
+                        <query-builder group="rule.group"></query-builder>
+                    </div>
+
+                    <div ng-switch-default="ng-switch-default" style="padding-top: 10px;">
+                        <div class="form-inline">
+                            <span class="pull-left">
+                                <select ng-options="field as field.display for field in queryType.fields" ng-model="rule.field" class="form-control input-xs"></select>
+
+                                <select ng-show="rule.field != null" style="margin-left: 5px" ng-options="condition as condition.name for condition in getConditions(rule.field)" ng-model="rule.condition" class="form-control input-xs"></select>
+                            </span>
+                            <span ng-switch="rule.condition.input">
+
+                                <span ng-switch-when="text">
+                                    <input style="margin-left: 5px" type="text" ng-model="rule.data" class="form-control input-xs" />
+                                </span>
+                                <span ng-switch-when="int">
+                                    <input style="margin-left: 5px" type="number" ng-model="rule.data" class="form-control input-xs" />
+                                </span>
+                                <span ng-switch-when="date">
+                                    <span style="margin-left: 5px">
+                                        <date-time-picker name="date"
+                                                          ng-model="rule.data"
+                                                          show-weeks="true"
+                                                          width="na"
+                                                          size="xs"
+                                                          id="dueDatePicker"
+                                                          auto-open-time="false">
+                                    </span>
+                                </span>
+                                <span ng-switch-when="project">
+                                    <select style="margin-left: 5px" ng-options="project as project.name for project in projects" ng-model="rule.data" class="form-control input-xs"></select>
+                                </span>
+                                <span ng-switch-when="group">
+                                    <select style="margin-left: 5px" ng-options="group as group.name for group in groups" ng-model="rule.data" class="form-control input-xs"></select>
+                                </span>
+                                <span ng-switch-when="user">
+                                    <input style="margin-left: 5px" type="text" ng-model="rule.data" class="form-control"
+                                           uib-typeahead="user as user.lastName + ', ' + user.firstName for user in users | filter: fullNameCompare($viewValue) | limitTo:8">
+                                </span>
+                                <span ng-switch-when="status">
+                                    <select style="margin-left: 5px" ng-options="status as status.name for status in statuses" ng-model="rule.data" class="form-control input-xs"></select>
+                                </span>
+                                <span ng-switch-default="ng-switch-default">
+                                    <input class="form-control input-xs" style="margin-left: 5px; width: 0px; border: none; background-color: rgba(1,1,1,0); box-shadow: none; cursor:default" disabled />
+                                </span>
+                            </span>
+                            <button style="margin-left: 5px" ng-click="removeCondition($index)" class="btn btn-xs btn-danger"><span class="glyphicon glyphicon-minus-sign"></span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ng-show="isBase">
+        <div>
+            <button type="submit" class="btn btn-default" ng-click="buildUrl()">Build Query</button>
+        </div>
+        <a target="_blank" href="" ng-href="{{queryUrl}}">{{queryUrl}}</a>
+    </div>
+</div>

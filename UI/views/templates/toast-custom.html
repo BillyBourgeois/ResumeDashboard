@@ -1,0 +1,38 @@
+﻿<div class="{{toastClass}} {{toastType}}" ng-click="tapToast()">
+    <div ng-switch on="allowHtml">
+        <div ng-switch-default ng-if="title" class="{{titleClass}}" aria-label="{{title}}">{{title}}</div>
+        <div ng-switch-default class="{{messageClass}}" aria-label="{{message}}">{{message}}</div>
+        <div ng-switch-when="true" ng-if="title" class="{{titleClass}}" ng-bind-html="title"></div>
+        <div ng-switch-when="true" class="{{messageClass}}" ng-bind-html="message"></div>
+        <div uib-collapse="extraData.detailsExpanded" ng-if="extraData.error">
+            <a style="color: #a09b9b" ng-click="extraData.detailsExpanded = !extraData.detailsExpanded; stop()">Show Details</a>
+        </div>
+        <div style="color: black" uib-collapse="!extraData.detailsExpanded">
+            <div class="well well-sm" style="padding-bottom: 0 !important;">
+                <div>
+                    <label>Error:</label>
+                    <span> {{extraData.error.statusText}} ({{extraData.error.status}})</span>
+                </div>
+                <div>
+                    <label>Details:</label>
+                    <span ng-bind-html="extraData.error.data.value | blank : 'Not Available'"> </span>
+                </div>
+                <div>
+                    <label>Request Method:</label>
+                    <span ng-bind-html="extraData.error.config.method | blank : 'Not Available'"> </span>
+                </div>
+                <div>
+                    <label>Request Url:</label>
+                    <span ng-bind-html="extraData.error.config.url | blank : 'Not Available'"> </span>
+                </div>
+
+                <div>
+                    <a style="color: slategray;"
+                       ng-click="extraData.detailsExpanded = !extraData.detailsExpanded">Hide Details</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <progress-bar ng-if="progressBar"></progress-bar>   
+</div>

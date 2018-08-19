@@ -1,0 +1,14 @@
+﻿<div>
+
+    <spinner ng-model="spin">
+    </spinner>
+        <ui-gmap-google-map id="theMap" center='map.center' ng-if="map.center"
+                            zoom='map.zoom'
+                            control='googleMap'>
+            <ui-gmap-marker coords="marker.coords"
+                            options="marker.options"
+                            events="marker.events"
+                            idkey="marker.id">
+        </ui-gmap-google-map>
+
+</div>

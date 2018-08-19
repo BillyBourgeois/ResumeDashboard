@@ -1,0 +1,10 @@
+﻿<span class="filter filtered " uib-popover-template="popupTemplateUrl"
+      popover-is-open="isOpen"
+      popover-title="Filter Column"
+      popover-placement="auto bottom-left"
+      popover-trigger="click, outsideClick"
+      popover-append-to-body="true"
+      popover-animation="true">
+    <span class="glyphicon glyphicon-filter "></span>
+    <i class="glyphicon glyphicon-ok-circle text-info" style="margin-left:-10px; font-size:x-small" ng-show="filtered() " ng-class="{ 'glyphicon-hide': !filtered(), 'glyphicon-ok-circle': filtered()}"></i>
+</span>

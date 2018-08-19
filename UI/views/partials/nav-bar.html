@@ -1,0 +1,118 @@
+﻿<nav class="navbar navbar-default navbar-inverse navbar-fixed-top"
+     ng-controller="NavBarCtrl">
+    <div class="navbar-header">
+        <button type="button"
+                class="navbar-toggle collapsed"
+                data-toggle="collapse"
+                data-target="#mainNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <span></span>
+        <a class="navbar-brand" style="padding:2px 2px 0 2px; max-height: 50px; max-width: 154px; padding-top: 10px;" href="#!/home" ng-class="{ active: isActive('/home')}">
+            <div class="navbar-brand-logo"></div>
+        </a>
+        <div class="navbar-text hidden-sm hidden-md hidden-lg">
+            <span class="glyphicon heartbeat"
+                  ng-class="{ 'glyphicon-heart-empty': heartbeat, 'glyphicon-heart': !heartbeat }">
+            </span>
+        </div>
+    </div>
+    <div class="collapse navbar-collapse "
+         id="mainNavbar">
+        <ul class="nav navbar-nav">
+            <li class="dropdown"
+                ng-class="{ active: isActive('/resume')}"
+                id="usersLink">
+                <a href=""
+                   class="dropdown-toggle"
+                   data-toggle="dropdown"
+                   role="button"
+                   aria-haspopup="true"
+                   aria-expanded="false">
+                    Resumés <span class="glyphicon glyphicon-menu-down"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li  ng-show="users === undefined">
+                        <a href="" ng-click="loadingClicked()">
+                            Loading ...
+                        </a>
+                    </li>
+                    <li ng-repeat="user in users| orderBy: lastName"
+                        ng-show="users !== undefined"
+                        ng-class="{ active: isActive('/resume/' + user.id)}"
+                        >
+                        <a ng-href="{{'#!/resume/' + user.id}}"
+                           ng-bind="user | fullName">
+                        </a>
+                    </li>                   
+                </ul>
+            </li>
+            <li ng-class="{ active: isActive('/info')}"
+                id="infoLink">
+                <a href="#!/info">Info</a>
+            </li>
+
+
+        </ul>
+        <div class="navbar-header navbar-text navbar-right hidden-xs" style="padding-right: 40px;">
+            <span style="padding-right: 5px"
+                  class="glyphicon hidden-xs heartbeat"
+                  ng-class="{ 'glyphicon-heart-empty': heartbeat, 'glyphicon-heart': !heartbeat }"></span>
+            <!--<a href="#/profile"
+               class="navbar-link"
+               ng-cloak
+               style="text-decoration: none;"
+               ng-show="( currentUser().actAsUsers| filter: inMyCompany()).length <= 0">
+                <span ng-show="currentUser().firstName">
+                    <span>Welcome, </span>
+                    <span ng-bind="currentUser().firstName"></span>
+                </span>
+            </a>-->
+            <!--<span class="dropdown"
+                  ng-show="( currentUser().actAsUsers| filter: inMyCompany()).length > 0">
+                <a href=""
+                   class="dropdown-toggle navbar-link"
+                   data-toggle="dropdown"
+                   role="button"
+                   aria-haspopup="true"
+                   aria-expanded="false">
+                    <span ng-show="currentUser().firstName">
+                        <span>Welcome, </span>
+                        <span ng-bind="currentUser().firstName"></span>
+                    </span>
+                    <span ng-show="currentUser().actingAs_Id != null">
+                        (Acting As <b ng-bind="currentUser().actingAs_Id | fullName"></b>)
+                    </span>
+                    <span class="glyphicon glyphicon-menu-down"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li ng-hide="actAsView()">
+                        <a href="#/profile"
+                           ng-cloak
+                           style="text-decoration: none;">
+                            My Profile
+                        </a>
+                    </li>
+                    <li  ng-hide="actAsView()" role="separator" class="divider"></li>
+                    <li>
+                        <a ng-click="actAs(null)"
+                           ng-show="currentUser().actingAs_Id != null">
+                            Remove Act As
+                        </a>
+                    </li>
+                    <li role="separator"
+                        class="divider"
+                        ng-show="currentUser().actingAs_Id != null && filteredUsers.length > 0">
+                    </li>
+                    <li ng-show="filteredUsers.length > 0" class="dropdown-header">Act As...</li>
+                    <li ng-repeat="user in filteredUsers = ( currentUser().actAsUsers| filter: inMyCompany() | filter: currentActAsFilter() | orderBy: 'lastName' )"
+                        ng-class="{ active: currentActAs(user) }">
+                        <a ng-click="actAs(user.id)"  ng-bind-html="user.id | fullName | blank :'Unknown'"></a>
+                    </li>
+                </ul>
+            </span>-->
+        </div>
+    </div>
+</nav>
